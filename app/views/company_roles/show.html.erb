@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Company role #<%= @the_company_role.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/company_roles">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_company_role/<%= @the_company_role.id %>">
+          Delete company role
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_company_role.name %>
+      </dd>
+
+      <dt>
+        Full part time
+      </dt>
+      <dd>
+        <%= @the_company_role.full_part_time %>
+      </dd>
+
+      <dt>
+        Interview question entries count
+      </dt>
+      <dd>
+        <%= @the_company_role.interview_question_entries_count %>
+      </dd>
+
+      <dt>
+        Interview formats entries count
+      </dt>
+      <dd>
+        <%= @the_company_role.interview_formats_entries_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_company_role.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_company_role.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit company role
+    </h2>
+
+    <form action="/modify_company_role/<%= @the_company_role.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_company_role.name %>">
+      </div>
+
+      <div>
+        <label for="full_part_time_box">
+          Full part time
+        </label>
+
+        <input type="text" id="full_part_time_box" name="query_full_part_time" value="<%= @the_company_role.full_part_time %>">
+      </div>
+
+      <div>
+        <label for="interview_question_entries_count_box">
+          Interview question entries count
+        </label>
+
+        <input type="text" id="interview_question_entries_count_box" name="query_interview_question_entries_count" value="<%= @the_company_role.interview_question_entries_count %>">
+      </div>
+
+      <div>
+        <label for="interview_formats_entries_count_box">
+          Interview formats entries count
+        </label>
+
+        <input type="text" id="interview_formats_entries_count_box" name="query_interview_formats_entries_count" value="<%= @the_company_role.interview_formats_entries_count %>">
+      </div>
+
+      <button>
+        Update company role
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

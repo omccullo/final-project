@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Interview formats entry #<%= @the_interview_formats_entry.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/interview_formats_entries">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_interview_formats_entry/<%= @the_interview_formats_entry.id %>">
+          Delete interview formats entry
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Company
+      </dt>
+      <dd>
+        <%= @the_interview_formats_entry.company_id %>
+      </dd>
+
+      <dt>
+        Format
+      </dt>
+      <dd>
+        <%= @the_interview_formats_entry.format_id %>
+      </dd>
+
+      <dt>
+        Round
+      </dt>
+      <dd>
+        <%= @the_interview_formats_entry.round %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_interview_formats_entry.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_interview_formats_entry.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit interview formats entry
+    </h2>
+
+    <form action="/modify_interview_formats_entry/<%= @the_interview_formats_entry.id %>"  method="post" >
+      <div>
+        <label for="company_id_box">
+          Company
+        </label>
+
+        <input type="text" id="company_id_box" name="query_company_id" value="<%= @the_interview_formats_entry.company_id %>">
+      </div>
+
+      <div>
+        <label for="format_id_box">
+          Format
+        </label>
+
+        <input type="text" id="format_id_box" name="query_format_id" value="<%= @the_interview_formats_entry.format_id %>">
+      </div>
+
+      <div>
+        <label for="round_box">
+          Round
+        </label>
+
+        <input type="text" id="round_box" name="query_round" value="<%= @the_interview_formats_entry.round %>">
+      </div>
+
+      <button>
+        Update interview formats entry
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

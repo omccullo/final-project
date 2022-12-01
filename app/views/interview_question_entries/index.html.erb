@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all interview question entries
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new interview question entry
+    </h2>
+
+    <form action="/insert_interview_question_entry" method="post">
+      <div>
+        <label for="question_id_box">
+          Question
+        </label>
+
+        <input type="text" id="question_id_box" name="query_question_id">
+      </div>
+
+      <div>
+        <label for="company_roles_id_box">
+          Company roles
+        </label>
+
+        <input type="text" id="company_roles_id_box" name="query_company_roles_id">
+      </div>
+
+      <div>
+        <label for="role_id_box">
+          Role
+        </label>
+
+        <input type="text" id="role_id_box" name="query_role_id">
+      </div>
+
+      <div>
+        <label for="frequency_box">
+          Frequency
+        </label>
+
+        <input type="text" id="frequency_box" name="query_frequency">
+      </div>
+
+      <button>
+        Create interview question entry
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Question
+        </th>
+
+        <th>
+          Company roles
+        </th>
+
+        <th>
+          Role
+        </th>
+
+        <th>
+          Frequency
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_interview_question_entries.each do |an_interview_question_entry| %>
+      <tr>
+        <td>
+          <%= an_interview_question_entry.id %>
+        </td>
+
+        <td>
+          <%= an_interview_question_entry.question_id %>
+        </td>
+
+        <td>
+          <%= an_interview_question_entry.company_roles_id %>
+        </td>
+
+        <td>
+          <%= an_interview_question_entry.role_id %>
+        </td>
+
+        <td>
+          <%= an_interview_question_entry.frequency %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_interview_question_entry.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_interview_question_entry.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/interview_question_entries/<%= an_interview_question_entry.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

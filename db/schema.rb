@@ -10,6 +10,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2022_12_01_213159) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "company_roles_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "company_roles", force: :cascade do |t|
+    t.string "name"
+    t.string "full_part_time"
+    t.integer "interview_question_entries_count"
+    t.integer "interview_formats_entries_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "interview_formats", force: :cascade do |t|
+    t.integer "number_of_interviews"
+    t.string "duration"
+    t.string "behavioral"
+    t.string "case"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "interview_formats_entries", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "format_id"
+    t.integer "round"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "interview_question_entries", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "company_roles_id"
+    t.integer "role_id"
+    t.integer "frequency"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end

@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Interview format #<%= @the_interview_format.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/interview_formats">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_interview_format/<%= @the_interview_format.id %>">
+          Delete interview format
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Number of interviews
+      </dt>
+      <dd>
+        <%= @the_interview_format.number_of_interviews %>
+      </dd>
+
+      <dt>
+        Duration
+      </dt>
+      <dd>
+        <%= @the_interview_format.duration %>
+      </dd>
+
+      <dt>
+        Behavioral
+      </dt>
+      <dd>
+        <%= @the_interview_format.behavioral %>
+      </dd>
+
+      <dt>
+        Case
+      </dt>
+      <dd>
+        <%= @the_interview_format.case %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_interview_format.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_interview_format.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit interview format
+    </h2>
+
+    <form action="/modify_interview_format/<%= @the_interview_format.id %>"  method="post" >
+      <div>
+        <label for="number_of_interviews_box">
+          Number of interviews
+        </label>
+
+        <input type="text" id="number_of_interviews_box" name="query_number_of_interviews" value="<%= @the_interview_format.number_of_interviews %>">
+      </div>
+
+      <div>
+        <label for="duration_box">
+          Duration
+        </label>
+
+        <input type="text" id="duration_box" name="query_duration" value="<%= @the_interview_format.duration %>">
+      </div>
+
+      <div>
+        <label for="behavioral_box">
+          Behavioral
+        </label>
+
+        <input type="text" id="behavioral_box" name="query_behavioral" value="<%= @the_interview_format.behavioral %>">
+      </div>
+
+      <div>
+        <label for="case_box">
+          Case
+        </label>
+
+        <input type="text" id="case_box" name="query_case" value="<%= @the_interview_format.case %>">
+      </div>
+
+      <button>
+        Update interview format
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

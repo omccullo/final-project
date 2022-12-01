@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all interview formats entries
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new interview formats entry
+    </h2>
+
+    <form action="/insert_interview_formats_entry" method="post">
+      <div>
+        <label for="company_id_box">
+          Company
+        </label>
+
+        <input type="text" id="company_id_box" name="query_company_id">
+      </div>
+
+      <div>
+        <label for="format_id_box">
+          Format
+        </label>
+
+        <input type="text" id="format_id_box" name="query_format_id">
+      </div>
+
+      <div>
+        <label for="round_box">
+          Round
+        </label>
+
+        <input type="text" id="round_box" name="query_round">
+      </div>
+
+      <button>
+        Create interview formats entry
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Company
+        </th>
+
+        <th>
+          Format
+        </th>
+
+        <th>
+          Round
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_interview_formats_entries.each do |an_interview_formats_entry| %>
+      <tr>
+        <td>
+          <%= an_interview_formats_entry.id %>
+        </td>
+
+        <td>
+          <%= an_interview_formats_entry.company_id %>
+        </td>
+
+        <td>
+          <%= an_interview_formats_entry.format_id %>
+        </td>
+
+        <td>
+          <%= an_interview_formats_entry.round %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_interview_formats_entry.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_interview_formats_entry.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/interview_formats_entries/<%= an_interview_formats_entry.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

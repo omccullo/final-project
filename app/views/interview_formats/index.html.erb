@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all interview formats
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new interview format
+    </h2>
+
+    <form action="/insert_interview_format" method="post">
+      <div>
+        <label for="number_of_interviews_box">
+          Number of interviews
+        </label>
+
+        <input type="text" id="number_of_interviews_box" name="query_number_of_interviews">
+      </div>
+
+      <div>
+        <label for="duration_box">
+          Duration
+        </label>
+
+        <input type="text" id="duration_box" name="query_duration">
+      </div>
+
+      <div>
+        <label for="behavioral_box">
+          Behavioral
+        </label>
+
+        <input type="text" id="behavioral_box" name="query_behavioral">
+      </div>
+
+      <div>
+        <label for="case_box">
+          Case
+        </label>
+
+        <input type="text" id="case_box" name="query_case">
+      </div>
+
+      <button>
+        Create interview format
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Number of interviews
+        </th>
+
+        <th>
+          Duration
+        </th>
+
+        <th>
+          Behavioral
+        </th>
+
+        <th>
+          Case
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_interview_formats.each do |an_interview_format| %>
+      <tr>
+        <td>
+          <%= an_interview_format.id %>
+        </td>
+
+        <td>
+          <%= an_interview_format.number_of_interviews %>
+        </td>
+
+        <td>
+          <%= an_interview_format.duration %>
+        </td>
+
+        <td>
+          <%= an_interview_format.behavioral %>
+        </td>
+
+        <td>
+          <%= an_interview_format.case %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_interview_format.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_interview_format.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/interview_formats/<%= an_interview_format.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

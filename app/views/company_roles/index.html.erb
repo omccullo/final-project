@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all company roles
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new company role
+    </h2>
+
+    <form action="/insert_company_role" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="full_part_time_box">
+          Full part time
+        </label>
+
+        <input type="text" id="full_part_time_box" name="query_full_part_time">
+      </div>
+
+      <div>
+        <label for="interview_question_entries_count_box">
+          Interview question entries count
+        </label>
+
+        <input type="text" id="interview_question_entries_count_box" name="query_interview_question_entries_count">
+      </div>
+
+      <div>
+        <label for="interview_formats_entries_count_box">
+          Interview formats entries count
+        </label>
+
+        <input type="text" id="interview_formats_entries_count_box" name="query_interview_formats_entries_count">
+      </div>
+
+      <button>
+        Create company role
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Full part time
+        </th>
+
+        <th>
+          Interview question entries count
+        </th>
+
+        <th>
+          Interview formats entries count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_company_roles.each do |a_company_role| %>
+      <tr>
+        <td>
+          <%= a_company_role.id %>
+        </td>
+
+        <td>
+          <%= a_company_role.name %>
+        </td>
+
+        <td>
+          <%= a_company_role.full_part_time %>
+        </td>
+
+        <td>
+          <%= a_company_role.interview_question_entries_count %>
+        </td>
+
+        <td>
+          <%= a_company_role.interview_formats_entries_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_company_role.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_company_role.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/company_roles/<%= a_company_role.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

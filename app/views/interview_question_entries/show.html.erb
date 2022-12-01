@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Interview question entry #<%= @the_interview_question_entry.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/interview_question_entries">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_interview_question_entry/<%= @the_interview_question_entry.id %>">
+          Delete interview question entry
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Question
+      </dt>
+      <dd>
+        <%= @the_interview_question_entry.question_id %>
+      </dd>
+
+      <dt>
+        Company roles
+      </dt>
+      <dd>
+        <%= @the_interview_question_entry.company_roles_id %>
+      </dd>
+
+      <dt>
+        Role
+      </dt>
+      <dd>
+        <%= @the_interview_question_entry.role_id %>
+      </dd>
+
+      <dt>
+        Frequency
+      </dt>
+      <dd>
+        <%= @the_interview_question_entry.frequency %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_interview_question_entry.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_interview_question_entry.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit interview question entry
+    </h2>
+
+    <form action="/modify_interview_question_entry/<%= @the_interview_question_entry.id %>"  method="post" >
+      <div>
+        <label for="question_id_box">
+          Question
+        </label>
+
+        <input type="text" id="question_id_box" name="query_question_id" value="<%= @the_interview_question_entry.question_id %>">
+      </div>
+
+      <div>
+        <label for="company_roles_id_box">
+          Company roles
+        </label>
+
+        <input type="text" id="company_roles_id_box" name="query_company_roles_id" value="<%= @the_interview_question_entry.company_roles_id %>">
+      </div>
+
+      <div>
+        <label for="role_id_box">
+          Role
+        </label>
+
+        <input type="text" id="role_id_box" name="query_role_id" value="<%= @the_interview_question_entry.role_id %>">
+      </div>
+
+      <div>
+        <label for="frequency_box">
+          Frequency
+        </label>
+
+        <input type="text" id="frequency_box" name="query_frequency" value="<%= @the_interview_question_entry.frequency %>">
+      </div>
+
+      <button>
+        Update interview question entry
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
