@@ -11,4 +11,7 @@
 #  role_id          :integer
 #
 class InterviewQuestionEntry < ApplicationRecord
+  belongs_to(:question, { :required => true, :class_name => "Question", :foreign_key => "question_id" })
+  belongs_to(:company_roles, { :required => true, :class_name => "CompanyRole", :foreign_key => "company_roles_id", :counter_cache => true })
+  belongs_to(:role, { :required => true, :class_name => "Role", :foreign_key => "role_id" })
 end

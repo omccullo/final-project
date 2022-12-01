@@ -11,4 +11,7 @@
 #  updated_at                       :datetime         not null
 #
 class CompanyRole < ApplicationRecord
+  has_many(:interview_question_entries, { :class_name => "InterviewQuestionEntry", :foreign_key => "company_roles_id", :dependent => :destroy })
+  has_many(:comments, { :class_name => "Comment", :foreign_key => "company_roles_id", :dependent => :destroy })
+  has_many(:interview_formats_entries, { :class_name => "InterviewFormatsEntry", :foreign_key => "company_id", :dependent => :destroy })
 end
