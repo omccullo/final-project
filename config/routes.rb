@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   # DELETE
   get("/delete_interview_question_entry/:path_id", { :controller => "interview_question_entries", :action => "destroy" })
 
-  #------------------------------
+  #------------------------------ DONE
 
   # Routes for the User account:
 
@@ -91,7 +91,7 @@ Rails.application.routes.draw do
   # DELETE RECORD
   get("/cancel_user_account", { :controller => "user_authentication", :action => "destroy" })
 
-  # ------------------------------
+  # ------------------------------ DONE
 
   # SIGN IN FORM
   get("/user_sign_in", { :controller => "user_authentication", :action => "sign_in_form" })
@@ -160,6 +160,9 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-get("/", {:controller=>"homepage", :action=>"homepage"})
+get("/", {:controller=>"mainpages", :action=>"homepage"})
 
+get("/new_interview_entry", {:controller=>"mainpages", :action=>"new_entry_general"})
+
+get("/questions_asked", {:controller=>"mainpages", :action=>"new_entry_questions"})
 end

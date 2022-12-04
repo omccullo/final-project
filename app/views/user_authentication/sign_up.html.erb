@@ -2,19 +2,19 @@
 
 <form action="/insert_user" method="post">
 
-  <div class="w-25 mb-3 p-3">
-    <label for="email_box" class="form-label">Email</label>
+  <div class="form-floating w-25 mb-3">
     <input class="form-control" id="email_box" name="query_email" placeholder="Choose a email..." type="text">
+    <label for="email_box" class="form-label">Email</label>
   </div>
 
-  <div class="w-25 mb-3 p-3">
-    <label for="password_box" class="form-label">Password</label>
+  <div class="form-floating w-25 mb-3">
     <input id="password_box" name="query_password" placeholder="Choose a password..." type="password" class="form-control">
+    <label for="password_box" class="form-label">Password</label>
   </div>
 
-  <div class="w-25 mb-3 p-3">
-    <label for="password_confirmation_box">Password Confirmation</label>
+  <div class="form-floating w-25 mb-3">
     <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password" class="form-control">
+    <label for="password_confirmation_box">Password Confirmation</label>
   </div>
 
   <button type="submit" class="btn btn-primary">
