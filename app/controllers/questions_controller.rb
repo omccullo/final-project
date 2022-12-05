@@ -61,6 +61,9 @@ class QuestionsController < ApplicationController
 
   def new
     @num_of_new=params.fetch("new_q_number").to_i
+    @company_id=params.fetch("company_id")
+    @role_id=params.fetch("role_id")
+    @round=params.fetch("round")
     if @num_of_new>0
       matching_questions = Question.all
 

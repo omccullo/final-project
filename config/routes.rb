@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   # Routes for the Interview formats entry resource:
 
+  get("/interview_format", {:controller=>"mainpages", :action=>"new_entry_format"})
+
   # CREATE
   post("/insert_interview_formats_entry", { :controller => "interview_formats_entries", :action => "create" })
           
@@ -115,6 +117,7 @@ Rails.application.routes.draw do
   # Routes for the Interview format resource:
 
   # CREATE
+
   post("/insert_interview_format", { :controller => "interview_formats", :action => "create" })
           
   # READ

@@ -1,0 +1,94 @@
+<h1>Interview Format</h1>
+
+These are the most common interview formats for this company. Please select the format for your interview. 
+
+<%@company_name=params.fetch("company")%>
+<%@position_type=params.fetch("position_type")%>
+<%@company=CompanyRole.where({:name=>@company_name, :full_part_time=>@position_type}).at(0)%>
+<%@company_id=@company.id.to_i%>
+<%@role_name=params.fetch("role")%>
+<%@role=Role.where({:role=>@role_name}).at(0)%>
+<%@role_id=@role.id.to_i%>
+<%@interview_round=params.fetch("round")%>
+<%@interview_format_entries=InterviewFormatsEntry.where({:company_id=>@company_id}).order({:frequency=>:desc})%>
+
+<hr>
+
+<div>
+  <form action="/new_format"> <!-- figure out if this route already exists-->
+    <%@format_number=0%>
+    <%@interview_format_entries.each do |a_format|%>
+    <%format_id=a_format.format_id%>
+    <%@format=InterviewFormat.where({:id=>format_id}).at(0)%>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="format<%@format_number%>">
+      <label class="form-check-label" for="format<%@format_number%>">
+         <%=@format.number_of_interviews%> interviews; <%=@format.duration%> each
+      </label>
+    </div>
+    <%@format_number=@format_number+1%>
+    <%end%>
+  
+<hr>
+
+<label>If your interview format was not listed above, please fill out the form below.</label>
+<select class="form-select mb-3 w-50" id="interviews_number" name="interviews_number">
+  <option selected>How many interviews did you do?</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+</select>
+
+<div class="input-group mb-2">
+  <div class="mb-2">
+    <label for="duration">Duration</label> 
+    <input id="duration" name="duration">
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="min">
+    <label class="form-check-label" for="min">
+      min 
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="hr">
+    <label class="form-check-label" for="hr">
+      hr
+    </label>
+  </div>
+</div>
+What type of questions were you asked?
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="general">
+    <label class="form-check-label" for="general">
+      General
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="behavioral">
+    <label class="form-check-label" for="behavioral">
+      Behavioral 
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="case">
+    <label class="form-check-label" for="case">
+      Case
+    </label>
+  </div>
+
+<input name="company_id" type="hidden" value="<%=@company_id%>">
+<input name="role_id" type="hidden" value="<%=@role_id%>">
+<input name="round" type="hidden" value="<%=@round%>">
+
+<button class="btn btn-primary">Next</button>
+  
+</form>
+</div>

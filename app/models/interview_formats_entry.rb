@@ -3,6 +3,7 @@
 # Table name: interview_formats_entries
 #
 #  id         :integer          not null, primary key
+#  frequency  :integer
 #  round      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

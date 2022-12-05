@@ -18,9 +18,14 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @company_id=params.fetch("company_id")
+    @role_id=params.fetch("role_id")
+    @round=params.fetch("round")
     the_comment = Comment.new
-    the_comment.user_id = params.fetch("user_id")
-    the_comment.company_roles_id = params.fetch("query_company_roles_id")
+    the_comment.company_roles_id = @company_id
+    the_comment.comment = params.fetch("new_comment")
+    the_comment.role = @role_id
+
 
     if the_comment.valid?
       the_comment.save

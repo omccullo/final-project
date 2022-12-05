@@ -6,7 +6,9 @@ These are the most frequently asked questions for this company. Please check the
 <%@position_type=params.fetch("position_type")%>
 <%@company=CompanyRole.where({:name=>@company_name, :full_part_time=>@position_type}).at(0)%>
 <%@company_id=@company.id.to_i%>
-<%@role=params.fetch("role")%>
+<%@role_name=params.fetch("role")%>
+<%@role=Role.where({:role=>@role_name}).at(0)%>
+<%@role_id=@role.id.to_i%>
 <%@interview_round=params.fetch("round")%>
 <%@interview_question_entries=InterviewQuestionEntry.where({:company_roles_id=>@company_id}).order({:frequency=>:desc})%>
 
@@ -23,10 +25,10 @@ These are the most frequently asked questions for this company. Please check the
       <label class="form-check-label" for="question<%@question_number%>">
          <%=@question.text%>
       </label>
-</div>
+    </div>
     <%@question_number=@question_number+1%>
     <%end%>
-</div>
+  
 <hr>
 
 <label>How many additional questions not listed above do you want to add to your submission</label>
@@ -44,6 +46,11 @@ These are the most frequently asked questions for this company. Please check the
   <option value="10">10</option>
 </select>
 
+<input name="company_id" type="hidden" value="<%=@company_id%>">
+<input name="role_id" type="hidden" value="<%=@role_id%>">
+<input name="round" type="hidden" value="<%=@round%>">
+
 <button class="btn btn-primary">Next</button>
   
 </form>
+</div>
