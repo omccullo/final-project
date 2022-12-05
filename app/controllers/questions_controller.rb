@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   def index
     matching_questions = Question.all
 
-    @list_of_questions = matching_questions.order({ :created_at => :desc })
+    @list_of_questions = matching_questions.order({ :created_at => :desc }) 
 
     render({ :template => "questions/index.html.erb" })
   end
@@ -18,15 +18,22 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    the_question = Question.new
-    the_question.text = params.fetch("query_text")
+    loop_count=params.fetch("loop_count").to_i
+    
+    new_loop_count=1
 
-    if the_question.valid?
-      the_question.save
-      redirect_to("/questions", { :notice => "Question created successfully." })
-    else
-      redirect_to("/questions", { :alert => the_question.errors.full_messages.to_sentence })
+    while new_loop_count<=loop_count  
+      question = Question.new
+      question.text = params.fetch("new_question_"+new_loop_count.to_s)
+      question.question_type = params.fetch("new_q_type_"+new_loop_count.to_s)
+      question.save
+      new_loop_count=new_loop_count+1
+      
     end
+
+    redirect_to("/comments", { :notice => "Question(s) created successfully." })
+
+
   end
 
   def update
@@ -50,5 +57,18 @@ class QuestionsController < ApplicationController
     the_question.destroy
 
     redirect_to("/questions", { :notice => "Question deleted successfully."} )
+  end
+
+  def new
+    @num_of_new=params.fetch("new_q_number").to_i
+    if @num_of_new>0
+      matching_questions = Question.all
+
+      @list_of_questions = matching_questions.order({ :created_at => :desc }) 
+
+      render({ :template => "questions/new.html.erb" })
+    else
+      redirect_to("/interview_comment")
+    end
   end
 end

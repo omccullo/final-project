@@ -1,0 +1,48 @@
+  <div>
+    <div>
+      <h1>
+  Interview Questions ctd.</h1>
+    </div>
+  </div>
+
+  <hr>
+
+  Please add additional questions from your interview that were not included on the previous page. Please classify each quesiton as general, behavioral, or case based on the guidelines in the BTG Handbook. 
+
+  Some addtional guidelines:
+  <ul>
+    <li>
+      If adding a new behavioral question, please use the standard format "TMAT...". For example, "TMAT you failed"
+    </li>
+    <li>
+      Avoid using company names for general and behavioral questions. You can add additional details in the comments section on the next page. For example, rather than "Why do you want to work for Adobe?" please enter "Why do you want to work for this company?"
+    </li>
+  </ul>
+
+  <!-- if I have time, try to add a box that makes another box appear-->
+
+  <div>
+    <div>
+
+      <form action="/insert_question" method="post">
+        <% loop_count=1%>
+        <% while loop_count<=@num_of_new%>
+          <div class="input-group mb-3">
+          <select type="button" class="form-select btn btn-outline-secondary w-25" id="new_q_number" name="new_q_type_<%=loop_count%>">
+          <option selected>Question Type</option>
+            <option value="General">General</option>
+            <option value="Behavioral">Behavioral</option>
+            <option value="Case">Case</option>
+            </ul>
+          <input class="form-control w-75" id="text_box_<%=loop_count%>" name="new_question_<%=loop_count%>" rows="3" placeholder="Type new question here"></input>
+          </div>
+          <%loop_count=loop_count+1%>
+        <%end%>
+        <%final_count=loop_count-1%>
+        <input name="loop_count" type="hidden" value=<%=final_count%>>
+        <button class="btn btn-primary">Next</button>
+      </form>
+    </div>
+  </div>
+
+<!-- add validation to the questions so it only submits if they're filled out>

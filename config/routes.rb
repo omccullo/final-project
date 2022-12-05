@@ -3,19 +3,24 @@ Rails.application.routes.draw do
   # Routes for the Question resource:
 
   # CREATE
+  get("/questions_asked", {:controller=>"mainpages", :action=>"new_entry_questions"})
+  
   post("/insert_question", { :controller => "questions", :action => "create" })
+
+  get("/new_questions", {:controller=>"questions", :action=>"new"})
           
   # READ
-  get("/questions", { :controller => "questions", :action => "index" })
+  get("/questions", { :controller => "questions", :action => "index" }) ## USE THIS FOR DISPLAYING WHEN PEOPLE WANT TO LOOK UP QUESTIONS
   
-  get("/questions/:path_id", { :controller => "questions", :action => "show" })
+  get("/questions/:path_id", { :controller => "questions", :action => "show" }) ## keep but add admin only power
   
   # UPDATE
   
-  post("/modify_question/:path_id", { :controller => "questions", :action => "update" })
+  post("/modify_question/:path_id", { :controller => "questions", :action => "update" }) ## keep but add admin only power
   
   # DELETE
-  get("/delete_question/:path_id", { :controller => "questions", :action => "destroy" })
+  get("/delete_question/:path_id", { :controller => "questions", :action => "destroy" }) ## keep but add admin only power
+
 
   #------------------------------
 
@@ -40,6 +45,8 @@ Rails.application.routes.draw do
 
   # Routes for the Comment resource:
 
+  get("/interview_comment", { :controller => "comments", :action => "new" })
+
   # CREATE
   post("/insert_comment", { :controller => "comments", :action => "create" })
           
@@ -58,6 +65,8 @@ Rails.application.routes.draw do
   #------------------------------
 
   # Routes for the Interview question entry resource:
+
+  get("/new_interview_entry", {:controller=>"mainpages", :action=>"new_entry_general"})
 
   # CREATE
   post("/insert_interview_question_entry", { :controller => "interview_question_entries", :action => "create" })
@@ -162,7 +171,8 @@ Rails.application.routes.draw do
 
 get("/", {:controller=>"mainpages", :action=>"homepage"})
 
-get("/new_interview_entry", {:controller=>"mainpages", :action=>"new_entry_general"})
 
-get("/questions_asked", {:controller=>"mainpages", :action=>"new_entry_questions"})
+
+
+
 end

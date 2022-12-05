@@ -1,0 +1,16 @@
+<div>
+  <div>
+    <h1>
+      Interview Comments
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+      <form action="/insert_comment" method="post">
+          <div class="input-group mb-3">
+          <input class="form-control w-50" id="new_comment" name="new_comment" rows="3" placeholder="Type new comment here"></input>
+          </div>
+        <input name="user_id" type="hidden" value=<%=session.fetch(:user_id)%>>
+        <button class="btn btn-primary">Submit</button>

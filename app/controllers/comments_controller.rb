@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def index
-    matching_comments = Comment.all
+    matching_comments = Comment.all 
 
     @list_of_comments = matching_comments.order({ :created_at => :desc })
 
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 
   def create
     the_comment = Comment.new
-    the_comment.user_id = params.fetch("query_user_id")
+    the_comment.user_id = params.fetch("user_id")
     the_comment.company_roles_id = params.fetch("query_company_roles_id")
 
     if the_comment.valid?
@@ -52,5 +52,9 @@ class CommentsController < ApplicationController
     the_comment.destroy
 
     redirect_to("/comments", { :notice => "Comment deleted successfully."} )
+  end
+
+  def new
+      render({ :template => "comments/new.html.erb" })
   end
 end
