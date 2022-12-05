@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_05_173831) do
+ActiveRecord::Schema.define(version: 2022_12_05_213959) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "company_roles_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2022_12_05_173831) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "frequency"
+    t.integer "role_id"
   end
 
   create_table "interview_question_entries", force: :cascade do |t|

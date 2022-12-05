@@ -65,6 +65,16 @@ class InterviewFormatsEntriesController < ApplicationController
       else
         @the_interview_format_id = interview_format_id.id
       end
+      ## this doesn't work 
+      the_interview_formats_entry = InterviewFormatsEntry.new
+      the_interview_formats_entry.company_id = @company_id
+      the_interview_formats_entry.round = @round
+      the_interview_formats_entry.role_id = @role_id
+      the_interview_formats_entry.frequency = 1
+      the_interview_formats_entry.format_id=@the_interview_format_id
+      the_interview_formats_entry.save
+
+      redirect_to("/questions_asked")
 
     else # this works thank god. 
       loop_number=params.fetch("format_number").to_i
@@ -82,15 +92,6 @@ class InterviewFormatsEntriesController < ApplicationController
       end
       redirect_to("/questions_asked")
     end
-## this doesn't work 
-    the_interview_formats_entry = InterviewFormatsEntry.new
-    the_interview_formats_entry.company_id = @company_id
-    the_interview_formats_entry.round = @round
-    the_interview_formats_entry.frequency = 1
-    the_interview_formats_entry.format_id=@the_interview_format_id
-    the_interview_formats_entry.save
-
-    redirect_to("/questions_asked")
 
   end
 

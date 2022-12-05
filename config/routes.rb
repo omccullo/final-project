@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   # Routes for the Question resource:
 
   # CREATE
-  get("/questions_asked", {:controller=>"mainpages", :action=>"new_entry_questions"})
+  get("/questions_asked", {:controller=>"mainpages", :action=>"new_entry_questions"}) #USED
   
-  post("/insert_question", { :controller => "questions", :action => "create" })
+  post("/insert_question", { :controller => "questions", :action => "create" }) #USED
 
-  get("/new_questions", {:controller=>"questions", :action=>"new"})
+  get("/new_questions", {:controller=>"questions", :action=>"new"}) #USED
           
   # READ
   get("/questions", { :controller => "questions", :action => "index" }) ## USE THIS FOR DISPLAYING WHEN PEOPLE WANT TO LOOK UP QUESTIONS
@@ -47,10 +47,10 @@ Rails.application.routes.draw do
 
   # Routes for the Comment resource:
 
-  get("/interview_comment", { :controller => "comments", :action => "new" })
+  get("/interview_comment", { :controller => "comments", :action => "new" }) #USED
 
   # CREATE
-  post("/insert_comment", { :controller => "comments", :action => "create" })
+  post("/insert_comment", { :controller => "comments", :action => "create" }) #USED
           
   # READ
   get("/comments", { :controller => "comments", :action => "index" })
@@ -68,10 +68,10 @@ Rails.application.routes.draw do
 
   # Routes for the Interview question entry resource:
 
-  get("/new_interview_entry", {:controller=>"mainpages", :action=>"new_entry_general"})
+  get("/new_interview_entry", {:controller=>"mainpages", :action=>"new_entry_general"}) #USED
 
   # CREATE
-  post("/insert_interview_question_entry", { :controller => "interview_question_entries", :action => "create" })
+  post("/insert_interview_question_entry", { :controller => "interview_question_entries", :action => "create" }) 
           
   # READ
   get("/interview_question_entries", { :controller => "interview_question_entries", :action => "index" })

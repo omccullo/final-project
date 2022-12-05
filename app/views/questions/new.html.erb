@@ -21,6 +21,8 @@
 
   <!-- if I have time, try to add a box that makes another box appear-->
 
+
+
   <div>
     <div>
 
@@ -40,6 +42,8 @@
         <%end%>
         <%final_count=loop_count-1%>
         <input name="loop_count" type="hidden" value=<%=final_count%>>
+        <input name="company_id" type="hidden" value=<%=@company_id%>>
+        <input name="role_id" type="hidden" value=<%=@role_id%>>
         <button class="btn btn-primary">Next</button>
       </form>
     </div>

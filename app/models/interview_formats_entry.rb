@@ -9,6 +9,7 @@
 #  updated_at :datetime         not null
 #  company_id :integer
 #  format_id  :integer
+#  role_id    :integer
 #
 class InterviewFormatsEntry < ApplicationRecord
   belongs_to(:company_role, { :required => true, :class_name => "CompanyRole", :foreign_key => "company_id", :counter_cache => true })

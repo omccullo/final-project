@@ -20,19 +20,12 @@ class CommentsController < ApplicationController
   def create
     @company_id=params.fetch("company_id")
     @role_id=params.fetch("role_id")
-    @round=params.fetch("round")
     the_comment = Comment.new
     the_comment.company_roles_id = @company_id
     the_comment.comment = params.fetch("new_comment")
     the_comment.role = @role_id
-
-
-    if the_comment.valid?
-      the_comment.save
-      redirect_to("/comments", { :notice => "Comment created successfully." })
-    else
-      redirect_to("/comments", { :alert => the_comment.errors.full_messages.to_sentence })
-    end
+    the_comment.save
+    redirect_to("/")
   end
 
   def update
@@ -60,6 +53,8 @@ class CommentsController < ApplicationController
   end
 
   def new
+    @company_id=InterviewQuestionEntry.all.order({:updated_at=>:desc}).at(0).company_roles_id # I know this technically bring up someone filling out the form at the same time but I'm not sure of a better way to carry the variable through. 
+    @role_id=InterviewQuestionEntry.all.order({:updated_at=>:desc}).at(0).role_id
       render({ :template => "comments/new.html.erb" })
   end
 end

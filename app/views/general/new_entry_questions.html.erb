@@ -2,20 +2,19 @@
 
 These are the most frequently asked questions for this company. Please check the ones you were asked. Questions may not bethe exact wording you were asked (e.g., "Walk me through your resume" vs "Tell me about yourself"), so please use your best judgment. If it seems close enough to the question you were asked, please select yes. You will have the option to submit additional questions not listed here on the next page. 
 
-
 <%@interview_question_entries=InterviewQuestionEntry.where({:company_roles_id=>@company_id}).order({:frequency=>:desc})%>
 
 <hr>
 
 <div>
-  <form action="/new_questions"> <!-- figure out if this route already exists-->
+  <form action="/new_questions"> 
     <%@question_number=0%>
     <%@interview_question_entries.each do |a_question|%>
     <%question_id=a_question.question_id%>
     <%@question=Question.where({:id=>question_id}).at(0)%>
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="question<%@question_number%>">
-      <label class="form-check-label" for="question<%@question_number%>">
+      <input class="form-check-input" type="checkbox" name="question<%=@question_number%>" id="question<%=@question_number%>" value="<%=question_id%>">
+      <label class="form-check-label" for="question<%=@question_number%>">
          <%=@question.text%>
       </label>
     </div>
@@ -42,6 +41,7 @@ These are the most frequently asked questions for this company. Please check the
 <input name="company_id" type="hidden" value="<%=@company_id%>">
 <input name="role_id" type="hidden" value="<%=@role_id%>">
 <input name="round" type="hidden" value="<%=@round%>">
+<input name="question_number" type="hidden" value="<%=@question_number-1%>">
 
 <button class="btn btn-primary">Next</button>
   
