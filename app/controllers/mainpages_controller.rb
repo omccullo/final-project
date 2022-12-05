@@ -9,6 +9,9 @@ class MainpagesController < ApplicationController
   end
 
   def new_entry_questions
+    
+    @company_id=@company_id
+    @role_id=@role_id
     render(:template=>"general/new_entry_questions.html.erb")
   end
 

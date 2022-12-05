@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_05_162707) do
+ActiveRecord::Schema.define(version: 2022_12_05_173831) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "company_roles_id"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2022_12_05_162707) do
     t.string "case"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "time_format"
+    t.string "general"
   end
 
   create_table "interview_formats_entries", force: :cascade do |t|

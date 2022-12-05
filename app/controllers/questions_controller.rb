@@ -65,10 +65,6 @@ class QuestionsController < ApplicationController
     @role_id=params.fetch("role_id")
     @round=params.fetch("round")
     if @num_of_new>0
-      matching_questions = Question.all
-
-      @list_of_questions = matching_questions.order({ :created_at => :desc }) 
-
       render({ :template => "questions/new.html.erb" })
     else
       redirect_to("/interview_comment")

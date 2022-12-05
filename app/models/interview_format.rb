@@ -6,7 +6,9 @@
 #  behavioral           :string
 #  case                 :string
 #  duration             :string
+#  general              :string
 #  number_of_interviews :integer
+#  time_format          :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
