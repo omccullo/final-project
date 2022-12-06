@@ -5,7 +5,7 @@ Congratulations! We hope your interview went well. Please fill out this form to 
   <div class="mb-1">
     <label for="company">Company</label>
     <select class="form-select mb-3 w-50" id="company" name="company">
-      <option selected></option>
+      <option selected value="0"></option>
       <%@companies_list=CompanyRole.all.order({:name=>:asc})%>
       <%@company_names=@companies_list.uniq{|company| [company.name]}%>
       <%@company_names.each do |a_company|%>
@@ -33,7 +33,7 @@ Congratulations! We hope your interview went well. Please fill out this form to 
   <div class="mb-1">
     <label for="role">Role</label>
     <select class="form-select mb-3 w-50" id="role" name="role">
-      <option selected></option>
+      <option selected value="0"></option>
       <%@roles_list=Role.all.order({:name=>:asc})%>
       <%@role_names=@roles_list.uniq{|role| [role.role]}%>
       <%@role_names.each do |a_role|%>

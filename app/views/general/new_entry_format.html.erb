@@ -4,9 +4,23 @@ These are the most common interview formats for this company. Please select the 
 
 <%@company_name=params.fetch("company")%>
 <%@position_type=params.fetch("position_type")%>
+  <%if @company_name=="0"%>
+    <%@company_name=params.fetch("company_other")%>
+    <%c=CompanyRole.new%>
+    <%c.name=@company_name%>
+    <%c.full_part_time=@position_type%>
+    <%c.save%>
+  <%end%>
 <%@company=CompanyRole.where({:name=>@company_name, :full_part_time=>@position_type}).at(0)%>
 <%@company_id=@company.id.to_i%>
 <%@role_name=params.fetch("role")%>
+  <%if @role_name=="0"%>
+    <%@new_role_name=params.fetch("role_other")%>
+    <%r=Role.new%>
+    <%r.role=@new_role_name%>
+    <%r.save%>
+    <%@role_name=Role.all.order({:created_at=>:desc}).at(0)%>
+  <%end%>
 <%@role=Role.where({:role=>@role_name}).at(0)%>
 <%@role_id=@role.id.to_i%>
 <%@interview_round=params.fetch("round")%>
