@@ -3,18 +3,53 @@ Congratulations! We hope your interview went well. Please fill out this form to 
 <hr>
 <form action="/interview_format">
   <div class="mb-1">
-    <label for="company">Company</label> 
-    <input id="company" name="company">
+    <label for="company">Company</label>
+    <select class="form-select mb-3 w-50" id="company" name="company">
+      <option selected></option>
+      <%@companies_list=CompanyRole.all.order({:name=>:asc})%>
+      <%@company_names=@companies_list.uniq{|company| [company.name]}%>
+      <%@company_names.each do |a_company|%>
+      <option value="<%=a_company.name%>"><%=a_company.name%></option>
+      <%end%>
+    </select>
   </div>
-  <div class="mb-1"> <!--make this a dropdown-->
+  <div class="mb-1">
+    <label for="company_other">Other:</label> 
+    <input id="company_other" name="company_other">
+  </div>
+
+<hr>
+  <div class="mb-1"> 
     <label for="position_type">Was this interview for an internship or full-time position?</label>
-    <input id="position_type" name="position_type">
+    <select class="form-select mb-3 w-50" id="position_type" name="position_type">
+      <option selected></option>
+      <option value="Full-time">Full-time</option>
+      <option value="Internship">Internship</option>
+    </select>
   </div>
-  <div class="mb-1"> <!--make this a dropdown with an other option. Other could be a modal that allows you to type in and then that modal redirects to a position type add that's then selected in the dropdown?-->
+
+  <hr>
+
+  <div class="mb-1">
     <label for="role">Role</label>
-    <input id="role" name="role">
+    <select class="form-select mb-3 w-50" id="role" name="role">
+      <option selected></option>
+      <%@roles_list=Role.all.order({:name=>:asc})%>
+      <%@role_names=@roles_list.uniq{|role| [role.role]}%>
+      <%@role_names.each do |a_role|%>
+      <option value="<%=a_role.role%>"><%=a_role.role%></option>
+      <%end%>
+    </select>
   </div>
-  <div class="mb-1"> <!--make this a dropdown with an other option-->
+
+  <div class="mb-1">
+    <label for="role_other">Other:</label> 
+    <input id="role_other" name="role_other">
+  </div>
+  <hr>
+
+
+  <div class="mb-1"> 
     <label for="round">Interview Round</label>
     <input id="round" name="round">
   </div>
