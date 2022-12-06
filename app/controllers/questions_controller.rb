@@ -29,6 +29,13 @@ class QuestionsController < ApplicationController
       question.text = params.fetch("new_question_"+new_loop_count.to_s)
       question.question_type = params.fetch("new_q_type_"+new_loop_count.to_s)
       question.save
+      @q_id=Question.all.order({:created_at=>:desc}).at(0).id
+      question_entry= InterviewQuestionEntry.new
+      question_entry.question_id=@q_id
+      question_entry.company_roles_id=@company_id
+      question_entry.role_id=@role_id
+      question_entry.frequency=1
+      question_entry.save
       new_loop_count=new_loop_count+1
       
     end
@@ -77,10 +84,12 @@ class QuestionsController < ApplicationController
         interview_question_entry.save
       end 
       loop_count=loop_count+1
+      
     end
-    redirect_to("/interview_comment")
     if @num_of_new>0
         render({ :template => "questions/new.html.erb" })
+    else
+      redirect_to("/interview_comment")
     end
   end
 end 
