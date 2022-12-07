@@ -3,15 +3,15 @@ Welcome to the BTG Interview Question Bank. You can either submit information ab
 <hr>
 <dl>
 <dd>
-<a href="/new_interview_entry">Submit New Interview</a>
+<a class="btn btn-outline-primary" href="/new_interview_entry" role="button">Submit New Interview</a>
 </dd>
 <dd>
 <hr>
-<h5>Filters</h5>
+<h5>Interview Data Filters</h5>
 
 <form action="/interview_data">
   <div class="mb-1">
-    <label for="company">Company</label>
+    <label for="company">Company:</label>
     <select class="form-select mb-3 w-50" id="company" name="company">
       <option selected value="0"></option>
       <%@companies_list=CompanyRole.all.order({:name=>:asc})%>
@@ -32,7 +32,7 @@ Welcome to the BTG Interview Question Bank. You can either submit information ab
   </div>
 
   <div class="mb-1">
-    <label for="role">Role</label>
+    <label for="role">Role:</label>
     <select class="form-select mb-3 w-50" id="role" name="role">
       <option selected value="0"></option>
       <%@roles_list=Role.all.order({:name=>:asc})%>
@@ -44,7 +44,7 @@ Welcome to the BTG Interview Question Bank. You can either submit information ab
   </div>
 
   <div class="mb-1">
-    <label for="round">Interview Round</label>
+    <label for="round">Interview Round:</label>
     <select class="form-select mb-3 w-50" id="round" name="round">
       <option selected value="0"></option>
       <%@rounds_list=InterviewFormatsEntry.all.order({:round=>:asc})%>

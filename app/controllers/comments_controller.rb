@@ -20,12 +20,16 @@ class CommentsController < ApplicationController
   def create
     @company_id=params.fetch("company_id")
     @role_id=params.fetch("role_id")
-    the_comment = Comment.new
-    the_comment.company_roles_id = @company_id
-    the_comment.comment = params.fetch("new_comment")
-    the_comment.role = @role_id
-    the_comment.save
-    redirect_to("/")
+    if params.fetch("new_comment")==""
+      redirect_to("/")
+    else
+      the_comment = Comment.new
+      the_comment.company_roles_id = @company_id
+      the_comment.comment = params.fetch("new_comment")
+      the_comment.role = @role_id
+      the_comment.save
+      redirect_to("/")
+    end
   end
 
   def update

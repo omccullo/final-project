@@ -18,32 +18,28 @@ class MainpagesController < ApplicationController
     render(:template=>"general/new_entry_format.html.erb")
   end
 
-
-
-
-
-
   def data_filter
     @company=params.fetch("company")
     @position_type=params.fetch("position_type")
     @role=params.fetch("role")
     @round=params.fetch("round")
 
-    if @company=="0"
+    if @company=="0" #this almost broke me
       @questions_list=InterviewQuestionEntry.all.order({:frequency=>:desc})
       @formats_list=InterviewFormatsEntry.all.order({:frequency=>:desc})
-      @comments_list="Must filter by company and position type to see comments."
-      @list=CompanyRole.where({:name=>@company})
-      @id_list=@list.ids
+      # @list=CompanyRole.where({:name=>@company})
+      # @id_list=@list.ids
       if @position_type=="0"
         if @role=="0"
           if @round=="0"
             @questions_list=InterviewQuestionEntry.all.order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.all.order({:frequency=>:desc})
+            @comments_list="0"
             render(:template=>"general/data_filter.html.erb")
           else #round is filtered
             @questions_list=InterviewQuestionEntry.all.order({:frequency=>:desc})
             @formats_list=@formats_list.where({:round=>@round}).order({:frequency=>:desc})
+            @comments_list="0"
             render(:template=>"general/data_filter.html.erb")
           end
         else #role is filtered
@@ -51,11 +47,13 @@ class MainpagesController < ApplicationController
             @role_id=Role.where({:role=>@role})
             @questions_list=InterviewQuestionEntry.where({:role_id=>@role_id}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:role_id=>@role_id}).order({:frequency=>:desc})
+            @comments_list="0"
             render(:template=>"general/data_filter.html.erb")
           else #round is filtered
             @role_id=Role.where({:role=>@role})
             @questions_list=InterviewQuestionEntry.where({:role_id=>@role_id}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:role_id=>@role_id, :round=>@round}).order({:frequency=>:desc})
+            @comments_list="0"
             render(:template=>"general/data_filter.html.erb")
           end
         end
@@ -66,10 +64,12 @@ class MainpagesController < ApplicationController
           if @round=="0"
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@id_list}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@id_list}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           else #round is filtered
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@id_list}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@id_list, :round=>@round}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           end
         else #role is filtered
@@ -77,11 +77,13 @@ class MainpagesController < ApplicationController
             @role_id=Role.where({:role=>@role})
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@id_list, :role_id=>@role_id}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@id_list, :role_id=>@role_id}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           else #round is filtered
             @role_id=Role.where({:role=>@role})
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@id_list, :role_id=>@role_id}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@id_list, :role_id=>@role_id, :round=>@round}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           end
         end
@@ -94,10 +96,12 @@ class MainpagesController < ApplicationController
           if @round=="0"
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@id_list}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@id_list}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           else #round is filtered
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@id_list}).order({:frequency=>:desc})
             @formats_list=@formats_list.where({:company_id=>@id_list, :round=>@round}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           end
         else #role is filtered
@@ -105,11 +109,13 @@ class MainpagesController < ApplicationController
             @role_id=Role.where({:role=>@role})
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@id_list, :role_id=>@role_id}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@id_list, :role_id=>@role_id}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           else #round is filtered
             @role_id=Role.where({:role=>@role})
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@id_list, :role_id=>@role_id}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@id_list, :role_id=>@role_id, :round=>@round}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           end
         end
@@ -120,10 +126,12 @@ class MainpagesController < ApplicationController
           if @round=="0"
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@better_id_list}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@better_id_list}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@better_id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           else #round is filtered
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@better_id_list}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@better_id_list, :round=>@round}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@better_id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           end
         else #role is filtered
@@ -131,31 +139,17 @@ class MainpagesController < ApplicationController
             @role_id=Role.where({:role=>@role})
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@better_id_list, :role_id=>@role_id}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@better_id_list, :role_id=>@role_id}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@better_id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           else #round is filtered
             @role_id=Role.where({:role=>@role})
             @questions_list=InterviewQuestionEntry.where({:company_roles_id=>@better_id_list, :role_id=>@role_id}).order({:frequency=>:desc})
             @formats_list=InterviewFormatsEntry.where({:company_id=>@better_id_list, :role_id=>@role_id, :round=>@round}).order({:frequency=>:desc})
+            @comments_list=Comment.where({:company_roles_id=>@better_id_list}).order({:created_at=>:desc})
             render(:template=>"general/data_filter.html.erb")
           end
         end
       end
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   end
 end
