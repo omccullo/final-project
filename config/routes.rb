@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post("/insert_question", { :controller => "questions", :action => "create" }) #USED
 
   get("/new_questions", {:controller=>"questions", :action=>"new"}) #USED
+
+  get("/interview_data", {:controller=>"mainpages", :action=>"data_filter"})
           
   # READ
   get("/questions", { :controller => "questions", :action => "index" }) ## USE THIS FOR DISPLAYING WHEN PEOPLE WANT TO LOOK UP QUESTIONS

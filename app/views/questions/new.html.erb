@@ -7,7 +7,7 @@
 
   <hr>
 
-  Please add additional questions from your interview that were not included on the previous page. Please classify each quesiton as general, behavioral, or case based on the guidelines in the BTG Handbook. 
+  Please add additional questions from your interview that were not included on the previous page. If submitting new questions not listed in the dropdowns, please classify each quesiton as general, behavioral, or case based on the guidelines in the BTG Handbook. 
 
   Some addtional guidelines:
   <ul>
@@ -19,8 +19,6 @@
     </li>
   </ul>
 
-  <!-- if I have time, try to add a box that makes another box appear-->
-
 
 
   <div>
@@ -29,15 +27,29 @@
       <form action="/insert_question" method="post">
         <% loop_count=1%>
         <% while loop_count<=@num_of_new%>
+          <strong>Question <%=loop_count%>:</strong>
+
+            <div class="mb-1">
+            <label for="new_q">Select from commonly asked questions:</label>
+            <select class="form-select mb-3 w-50" id="new_q_<%=loop_count%>" name="new_q_<%=loop_count%>">
+              <option selected value="0"></option>
+              <%@questions_list=Question.all.order({:text=>:asc})%>
+              <%@questions_text=@questions_list.uniq{|question| [question.text]}%>
+              <%@questions_text.each do |a_question|%>
+              <option value="<%=a_question.id%>"><%=a_question.text%></option>
+              <%end%>
+            </select>
+            </div>
+          Or submit a new question not listed:
           <div class="input-group mb-3">
           <select type="button" class="form-select btn btn-outline-secondary w-25" id="new_q_number" name="new_q_type_<%=loop_count%>">
           <option selected>Question Type</option>
             <option value="General">General</option>
             <option value="Behavioral">Behavioral</option>
             <option value="Case">Case</option>
-            </ul>
-          <input class="form-control w-75" id="text_box_<%=loop_count%>" name="new_question_<%=loop_count%>" rows="3" placeholder="Type new question here"></input>
+          <input class="form-control w-75" id="text_box_<%=loop_count%>" name="new_question_<%=loop_count%>" placeholder="Type new question here"></input>
           </div>
+          <hr>
           <%loop_count=loop_count+1%>
         <%end%>
         <%final_count=loop_count-1%>
@@ -49,4 +61,4 @@
     </div>
   </div>
 
-<!-- add validation to the questions so it only submits if they're filled out>
+<!-- add validation to the questions so it only submits if they're filled out if I have time>

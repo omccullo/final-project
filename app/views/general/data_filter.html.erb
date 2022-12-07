@@ -1,0 +1,123 @@
+<h1>Interview Data</h1>
+<hr>
+
+@questions_list
+            @formats_list
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="questions">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Questions Asked
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="questions" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div><strong>Frequently asked questions in order of frequency</strong></div>
+        <dl>
+        <%@questions_list.each do |a_question|%>
+          <%question_to_display=Question.where({:id=>a_question.question_id})%>
+          <%question_to_display.each do |the_question|%>
+            <dd><%=the_question.text%> (<%=the_question.question_type%>)</dd>
+          <%end%>
+        <%end%>
+        </dl>
+        
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="formats">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Common Formats
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="formats" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div><strong>Most frequent interview formats in order of frequency</strong></div>
+        <dl>
+        <%@formats_list.each do |a_format|%>
+          <%format_to_display=InterviewFormat.where({:id=>a_format.format_id})%>
+          <%format_to_display.each do |the_format|%>
+            <dd><%=the_format.number_of_interviews%> interviews; (<%=the_format.duration%>) (<%=the_format.time_format%>) each</dd>
+          <%end%>
+        <%end%>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Interview Comments
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="/interview_format">
+  <div class="mb-1">
+    <label for="company">Company</label>
+    <select class="form-select mb-3 w-50" id="company" name="company">
+      <option selected value="0"></option>
+      <%@companies_list=CompanyRole.all.order({:name=>:asc})%>
+      <%@company_names=@companies_list.uniq{|company| [company.name]}%>
+      <%@company_names.each do |a_company|%>
+      <option value="<%=a_company.name%>"><%=a_company.name%></option>
+      <%end%>
+    </select>
+  </div>
+
+  <div class="mb-1"> 
+    <label for="position_type">Internship or Full-time</label>
+    <select class="form-select mb-3 w-50" id="position_type" name="position_type">
+      <option selected value="0"></option>
+      <option value="Full-time">Full-time</option>
+      <option value="Internship">Internship</option>
+    </select>
+  </div>
+
+  <div class="mb-1">
+    <label for="role">Role</label>
+    <select class="form-select mb-3 w-50" id="role" name="role">
+      <option selected value="0"></option>
+      <%@roles_list=Role.all.order({:name=>:asc})%>
+      <%@role_names=@roles_list.uniq{|role| [role.role]}%>
+      <%@role_names.each do |a_role|%>
+      <option value="<%=a_role.role%>"><%=a_role.role%></option>
+      <%end%>
+    </select>
+  </div>
+
+  <div class="mb-1"> 
+    <label for="round">Interview Round</label>
+    <input id="round" name="round">
+  </div>
+
+  <button class="btn btn-primary">Next</button>
+  
+</form>

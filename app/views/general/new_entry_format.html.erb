@@ -8,8 +8,12 @@ These are the most common interview formats for this company. Please select the 
     <%@company_name=params.fetch("company_other")%>
     <%c=CompanyRole.new%>
     <%c.name=@company_name%>
-    <%c.full_part_time=@position_type%>
+    <%c.full_part_time="Full-time"%>
     <%c.save%>
+    <%d=CompanyRole.new%>
+    <%d.name=@company_name%>
+    <%d.full_part_time="Internship"%>
+    <%d.save%>
   <%end%>
 <%@company=CompanyRole.where({:name=>@company_name, :full_part_time=>@position_type}).at(0)%>
 <%@company_id=@company.id.to_i%>
@@ -19,7 +23,7 @@ These are the most common interview formats for this company. Please select the 
     <%r=Role.new%>
     <%r.role=@new_role_name%>
     <%r.save%>
-    <%@role_name=Role.all.order({:created_at=>:desc}).at(0)%>
+    <%@role_name=Role.all.order({:created_at=>:desc}).at(0).role%>
   <%end%>
 <%@role=Role.where({:role=>@role_name}).at(0)%>
 <%@role_id=@role.id.to_i%>

@@ -1,10 +1,60 @@
 <h1>Booth Tech Group Interview Question Bank</h1>
-
+Welcome to the BTG Interview Question Bank. You can either submit information about an interview you've had or view data on previously submitted interview information. 
+<hr>
 <dl>
 <dd>
 <a href="/new_interview_entry">Submit New Interview</a>
 </dd>
 <dd>
-<a href="/new_interview_entry">Look Up Interview Data</a>
-</dd>
-</dl>
+<hr>
+<h5>Filters</h5>
+
+<form action="/interview_data">
+  <div class="mb-1">
+    <label for="company">Company</label>
+    <select class="form-select mb-3 w-50" id="company" name="company">
+      <option selected value="0"></option>
+      <%@companies_list=CompanyRole.all.order({:name=>:asc})%>
+      <%@company_names=@companies_list.uniq{|company| [company.name]}%>
+      <%@company_names.each do |a_company|%>
+      <option value="<%=a_company.name%>"><%=a_company.name%></option>
+      <%end%>
+    </select>
+  </div>
+
+  <div class="mb-1"> 
+    <label for="position_type">Internship or Full-time</label>
+    <select class="form-select mb-3 w-50" id="position_type" name="position_type">
+      <option selected value="0"></option>
+      <option value="Full-time">Full-time</option>
+      <option value="Internship">Internship</option>
+    </select>
+  </div>
+
+  <div class="mb-1">
+    <label for="role">Role</label>
+    <select class="form-select mb-3 w-50" id="role" name="role">
+      <option selected value="0"></option>
+      <%@roles_list=Role.all.order({:name=>:asc})%>
+      <%@role_names=@roles_list.uniq{|role| [role.role]}%>
+      <%@role_names.each do |a_role|%>
+      <option value="<%=a_role.role%>"><%=a_role.role%></option>
+      <%end%>
+    </select>
+  </div>
+
+  <div class="mb-1">
+    <label for="round">Interview Round</label>
+    <select class="form-select mb-3 w-50" id="round" name="round">
+      <option selected value="0"></option>
+      <%@rounds_list=InterviewFormatsEntry.all.order({:round=>:asc})%>
+      <%@rounds=@rounds_list.uniq{|round| [round.round]}%>
+      <%@rounds.each do |a_round|%>
+        <option value="<%=a_round.round%>"><%=a_round.round%></option>
+      <%end%>
+    </select>
+  </div>
+
+  <button class="btn btn-primary">Next</button>
+  
+</form>
