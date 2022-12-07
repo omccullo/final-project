@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get("/new_questions", {:controller=>"questions", :action=>"new"}) #USED
 
   get("/interview_data", {:controller=>"mainpages", :action=>"data_filter"})
+
+  get("/interview_search", {:controller=>"mainpages", :action=>"look_up"})
           
   # READ
   get("/questions", { :controller => "questions", :action => "index" }) ## USE THIS FOR DISPLAYING WHEN PEOPLE WANT TO LOOK UP QUESTIONS

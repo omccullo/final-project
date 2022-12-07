@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
       the_comment.comment = params.fetch("new_comment")
       the_comment.role = @role_id
       the_comment.save
-      redirect_to("/")
+      redirect_to("/", {:notice=>"Interview submitted. Thank you for paying it forward!"})
     end
   end
 

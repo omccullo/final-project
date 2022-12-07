@@ -152,4 +152,8 @@ class MainpagesController < ApplicationController
       end
     end
   end
+
+  def look_up
+    render(:template=>"general/search_interview_data.html.erb")
+  end
 end

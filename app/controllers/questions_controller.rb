@@ -74,34 +74,34 @@ class QuestionsController < ApplicationController
     the_question.destroy
 
     redirect_to("/questions", { :notice => "Question deleted successfully."} )
-  end
+  end 
 
-  def new ## doesn't add multiples for some reason
+  def new 
     @num_of_new=params.fetch("new_q_number").to_i
     @company_id=params.fetch("company_id")
     @role_id=params.fetch("role_id")
     @round=params.fetch("round")
-    loop_number=params.fetch("question_number").to_i
-    loop_count=1
-    while loop_count<=loop_number
+    @loop_number=params.fetch("question_number").to_i
+    @loop_count=1
+    while @loop_count<=@loop_number
       @num_of_new=params.fetch("new_q_number").to_i
       @company_id=params.fetch("company_id")
       @role_id=params.fetch("role_id")
       @round=params.fetch("round")
-      if params["question"+loop_count.to_s].to_i>0
-        question_id=params.fetch("question"+loop_count.to_s)
+      if params["question"+@loop_count.to_s].to_i>0
+        question_id=params.fetch("question"+@loop_count.to_s)
         interview_question_entry = InterviewQuestionEntry.where({:question_id=>question_id, :company_roles_id=>@company_id, :role_id=>@role_id}).at(0)
         new_frequency=interview_question_entry.frequency
         new_frequency=new_frequency+1
         interview_question_entry.frequency=new_frequency
         interview_question_entry.save
       end 
-      loop_count=loop_count+1
+      @loop_count=@loop_count+1
       
     end
     if @num_of_new>0
-        render({ :template => "questions/new.html.erb" })
-    else
+      render({ :template => "questions/new.html.erb" })
+    else 
       redirect_to("/interview_comment")
     end
   end

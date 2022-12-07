@@ -8,18 +8,19 @@ These are the most frequently asked questions for this company. Please check the
 
 <div>
   <form action="/new_questions"> 
-    <%@question_number=0%>
+    <%@question_number=1%>
     <%@interview_question_entries.each do |a_question|%>
     <%question_id=a_question.question_id%>
     <%@question=Question.where({:id=>question_id}).at(0)%>
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" name="question<%=@question_number%>" id="question<%=@question_number%>" value="<%=question_id%>">
+      <input class="form-check-input" type="checkbox" name="question<%=@question_number%>" id="question<%=@question_number%>" value="<%=question_id.to_i%>">
       <label class="form-check-label" for="question<%=@question_number%>">
          <%=@question.text%>
       </label>
     </div>
     <%@question_number=@question_number+1%>
     <%end%>
+    <%final_number=@question_number-1%>
   
 <hr>
 
@@ -41,7 +42,7 @@ These are the most frequently asked questions for this company. Please check the
 <input name="company_id" type="hidden" value="<%=@company_id%>">
 <input name="role_id" type="hidden" value="<%=@role_id%>">
 <input name="round" type="hidden" value="<%=@round%>">
-<input name="question_number" type="hidden" value="<%=@question_number-1%>">
+<input name="question_number" type="hidden" value="<%=final_number%>">
 
 <button class="btn btn-primary">Next</button>
   
