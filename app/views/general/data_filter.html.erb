@@ -1,5 +1,4 @@
-<%require "date"%>
-<h1>Interview Data</h1>
+<h1 class="pt-2">Interview Data</h1>
 <hr>
 
 <div><strong>Company: </strong>
@@ -26,6 +25,65 @@
   <%else%>
     <%=@round%>
   <%end%>
+
+    <button class="btn btn-secondary btn-sm mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      New Search
+    </button> 
+
+
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <h6>Filters</h6>
+    <form action="/interview_data">
+      <div class="mb-1">
+        <label for="company">Company:</label>
+        <select class="form-select mb-3 w-50" id="company" name="company">
+          <option selected value="0"></option>
+          <%@companies_list=CompanyRole.all.order({:name=>:asc})%>
+          <%@company_names=@companies_list.uniq{|company| [company.name]}%>
+          <%@company_names.each do |a_company|%>
+          <option value="<%=a_company.name%>"><%=a_company.name%></option>
+          <%end%>
+        </select>
+      </div>
+
+      <div class="mb-1"> 
+        <label for="position_type">Internship or Full-time</label>
+        <select class="form-select mb-3 w-50" id="position_type" name="position_type">
+          <option selected value="0"></option>
+          <option value="Full-time">Full-time</option>
+          <option value="Internship">Internship</option>
+        </select>
+      </div>
+
+      <div class="mb-1">
+        <label for="role">Role:</label>
+        <select class="form-select mb-3 w-50" id="role" name="role">
+          <option selected value="0"></option>
+          <%@roles_list=Role.all.order({:name=>:asc})%>
+          <%@role_names=@roles_list.uniq{|role| [role.role]}%>
+          <%@role_names.each do |a_role|%>
+          <option value="<%=a_role.role%>"><%=a_role.role%></option>
+          <%end%>
+        </select>
+      </div>
+
+      <div class="mb-1">
+        <label for="round">Interview Round:</label>
+        <select class="form-select mb-3 w-50" id="round" name="round">
+          <option selected value="0"></option>
+          <%@rounds_list=InterviewFormatsEntry.all.order({:round=>:asc})%>
+          <%@rounds=@rounds_list.uniq{|round| [round.round]}%>
+          <%@rounds.each do |a_round|%>
+            <option value="<%=a_round.round%>"><%=a_round.round%></option>
+          <%end%>
+        </select>
+      </div>
+
+    <button class="btn btn-primary">Next</button>
+  </form>
+  </div>
+</div>
 </div>
 <hr>
 
@@ -40,8 +98,11 @@
     
     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body">
-        <p class="mb-3"><strong>Frequently asked questions in order of frequency</strong><p>
-          
+        <%if @question_list==nil%>
+          No questions have been submitted. Please try different search filters. For example, if you searched both Company and Position, try filtering only the Company. 
+        <%else%>
+          <p class="mb-3"><strong>Frequently asked questions in order of frequency</strong><p>
+        <%end%>
           <dl>
           <%@questions_list.each do |a_question|%>
             <%question_to_display=Question.where({:id=>a_question.question_id})%>
@@ -61,7 +122,12 @@
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body">
-      <p class="mb-3"><strong>Most frequent interview formats in order of frequency</strong><p>
+        <%if @format_list==nil%>
+          No formats have been submitted. Please try different search filters. For example, if you searched both Company and Position, try filtering only the Company. 
+        <%else%>
+          <p class="mb-3"><strong>Most frequent interview formats in order of frequency</strong><p>
+        <%end%>
+      
         <dl>
         <%@formats_list.each do |a_format|%>
           <%format_to_display=InterviewFormat.where({:id=>a_format.format_id})%>

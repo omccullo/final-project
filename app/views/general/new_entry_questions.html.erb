@@ -1,12 +1,17 @@
-<h1>Interview Questions</h1>
-
-These are the most frequently asked questions for this company. Please check the ones you were asked. Questions may not bethe exact wording you were asked (e.g., "Walk me through your resume" vs "Tell me about yourself"), so please use your best judgment. If it seems close enough to the question you were asked, please select yes. You will have the option to submit additional questions not listed here on the next page. 
+<h1  class="pt-2">Interview Questions</h1>
 
 <%@interview_question_entries=InterviewQuestionEntry.where({:company_roles_id=>@company_id}).order({:frequency=>:desc})%>
-
+<%@newest_company=CompanyRole.all.order({:created_at=>:desc}).at(0)%>
+<%@this_company=CompanyRole.where({:id=>@company_id}).at(0)%>
 
 <div class="collapse.show" id="collapseExample">
   <div class="card card-body">
+  <%if @newest_company.name==@this_company.name%>
+    No quesitons have been submitted for this company yet. Please fill out the form below to submit new questions on the next page.
+  <%else%>
+    These are the most frequently asked questions for this company. Please check the ones you were asked. Questions may not be the exact wording you were asked (e.g., "Walk me through your resume" vs "Tell me about yourself"), so please use your best judgment. If it seems close enough to the question you were asked, please select yes. You will have the option to submit additional questions not listed here on the next page. 
+  <%end%>
+
 <div>
   <form action="/new_questions"> 
     <%@question_number=1%>

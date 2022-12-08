@@ -1,6 +1,4 @@
-<h1>Interview Format</h1>
-
-These are the most common interview formats for this company. Please select the format for your interview. 
+<h1 class="pt-2">Interview Format</h1>
 
 <%@company_name=params.fetch("company")%>
 <%@position_type=params.fetch("position_type")%>
@@ -33,6 +31,11 @@ These are the most common interview formats for this company. Please select the 
 <div>
 <div class="collapse.show" id="collapseExample">
   <div class="card card-body">
+  <%if params.fetch("company")=="0"%>
+    No interview formats have been submitted for this company yet. Please fill out the form below to submit a new interview format.
+  <%else%>
+    These are the most common interview formats for this company. Please select the format for your interview. 
+  <%end%>
   <form action="/insert_interview_formats_entry" method="post"> 
     <%@format_number=1%>
     <%@interview_format_entries.each do |a_format|%>
@@ -73,7 +76,7 @@ If your interview format was NOT listed above, please fill out the form below.
     <input id="duration" name="duration">
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="min" id="min" value="true">
+    <input class="form-check-input p-2" type="checkbox" name="min" id="min" value="true">
     <label class="form-check-label" for="min">
       min 
     </label>
