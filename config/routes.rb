@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get("/", {:controller=>"mainpages", :action=>"homepage"})
+
   # Routes for the Question resource:
 
   # CREATE
@@ -9,21 +11,21 @@ Rails.application.routes.draw do
 
   get("/new_questions", {:controller=>"questions", :action=>"new"}) #USED
 
-  get("/interview_data", {:controller=>"mainpages", :action=>"data_filter"})
+  get("/interview_data", {:controller=>"mainpages", :action=>"data_filter"}) #USED
 
-  get("/interview_search", {:controller=>"mainpages", :action=>"look_up"})
+  get("/interview_search", {:controller=>"mainpages", :action=>"look_up"}) #USED
           
   # READ
-  get("/questions", { :controller => "questions", :action => "index" }) ## USE THIS FOR DISPLAYING WHEN PEOPLE WANT TO LOOK UP QUESTIONS
+  get("/questions", { :controller => "questions", :action => "index" })
   
-  get("/questions/:path_id", { :controller => "questions", :action => "show" }) ## keep but add admin only power
+  get("/questions/:path_id", { :controller => "questions", :action => "show" })
   
   # UPDATE
   
-  post("/modify_question/:path_id", { :controller => "questions", :action => "update" }) ## keep but add admin only power
+  post("/modify_question/:path_id", { :controller => "questions", :action => "update" }) 
   
   # DELETE
-  get("/delete_question/:path_id", { :controller => "questions", :action => "destroy" }) ## keep but add admin only power
+  get("/delete_question/:path_id", { :controller => "questions", :action => "destroy" }) 
 
 
   #------------------------------
@@ -94,9 +96,9 @@ Rails.application.routes.draw do
   # Routes for the User account:
 
   # SIGN UP FORM
-  get("/user_sign_up", { :controller => "user_authentication", :action => "sign_up_form" })         
+  get("/user_sign_up", { :controller => "user_authentication", :action => "sign_up_form" })  # USED       
   # CREATE RECORD
-  post("/insert_user", { :controller => "user_authentication", :action => "create"  })
+  post("/insert_user", { :controller => "user_authentication", :action => "create"  }) # USED
       
   # EDIT PROFILE FORM        
   get("/edit_user_profile", { :controller => "user_authentication", :action => "edit_profile_form" })       
@@ -109,12 +111,12 @@ Rails.application.routes.draw do
   # ------------------------------ DONE
 
   # SIGN IN FORM
-  get("/user_sign_in", { :controller => "user_authentication", :action => "sign_in_form" })
+  get("/user_sign_in", { :controller => "user_authentication", :action => "sign_in_form" }) # USED
   # AUTHENTICATE AND STORE COOKIE
-  post("/user_verify_credentials", { :controller => "user_authentication", :action => "create_cookie" })
+  post("/user_verify_credentials", { :controller => "user_authentication", :action => "create_cookie" }) # USED
   
   # SIGN OUT        
-  get("/user_sign_out", { :controller => "user_authentication", :action => "destroy_cookies" })
+  get("/user_sign_out", { :controller => "user_authentication", :action => "destroy_cookies" }) #USED
              
   #------------------------------
 
@@ -176,7 +178,7 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-get("/", {:controller=>"mainpages", :action=>"homepage"})
+
 
 
 

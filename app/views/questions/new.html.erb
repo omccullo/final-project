@@ -20,7 +20,8 @@
   </ul>
 
 
-
+<div class="collapse.show" id="collapseExample">
+  <div class="card card-body">
   <div>
     <div>
 
@@ -34,10 +35,27 @@
             <select class="form-select mb-3 w-50" id="new_q_<%=loop_count%>" name="new_q_<%=loop_count%>">
               <option selected value="0"></option>
               <%@questions_list=Question.all.order({:text=>:asc})%>
-              <%@questions_text=@questions_list.uniq{|question| [question.text]}%>
-              <%@questions_text.each do |a_question|%>
-              <option value="<%=a_question.id%>"><%=a_question.text%></option>
-              <%end%>
+              <%@questions_general=@questions_list.where({:question_type=>"General"})%>
+              <%@questions_behavioral=@questions_list.where({:question_type=>"Behavioral"})%>
+              <%@questions_case=@questions_list.where({:question_type=>"Case"})%>
+              <%@questions_general_text=@questions_general.uniq{|question| [question.text]}%>
+              <%@questions_behavioral_text=@questions_behavioral.uniq{|question| [question.text]}%>
+              <%@questions_case_text=@questions_case.uniq{|question| [question.text]}%>
+              <optgroup label="General:">
+                <%@questions_general_text.each do |a_question|%>
+                <option value="<%=a_question.id%>"><%=a_question.text%></option>
+                <%end%>
+              </optgroup>
+              <optgroup label="Behavioral:">
+                <%@questions_behavioral_text.each do |a_question|%>
+                <option value="<%=a_question.id%>"><%=a_question.text%></option>
+                <%end%>
+              </optgroup>
+              <optgroup label="Case:">
+                <%@questions_case_text.each do |a_question|%>
+                <option value="<%=a_question.id%>"><%=a_question.text%></option>
+                <%end%>
+              </optgroup>
             </select>
             </div>
           Or submit a new question not listed:
@@ -60,5 +78,7 @@
       </form>
     </div>
   </div>
+  </div>
+  
 
 <!-- add validation to the questions so it only submits if they're filled out if I have time>

@@ -4,8 +4,9 @@ These are the most frequently asked questions for this company. Please check the
 
 <%@interview_question_entries=InterviewQuestionEntry.where({:company_roles_id=>@company_id}).order({:frequency=>:desc})%>
 
-<hr>
 
+<div class="collapse.show" id="collapseExample">
+  <div class="card card-body">
 <div>
   <form action="/new_questions"> 
     <%@question_number=1%>
@@ -47,4 +48,6 @@ These are the most frequently asked questions for this company. Please check the
 <button class="btn btn-primary">Next</button>
   
 </form>
+</div>
+</div>
 </div>

@@ -1,9 +1,12 @@
 <h1>General Information</h1>
 Congratulations! We hope your interview went well. Please fill out this form to let us know the questions you were asked during your interview!
-<hr>
+
+
+<div class="collapse.show" id="collapseExample">
+  <div class="card card-body">
 <form action="/interview_format">
   <div class="mb-1">
-    <label for="company">Company</label>
+    <label for="company">Company:</label>
     <select class="form-select mb-3 w-50" id="company" name="company">
       <option selected value="0"></option>
       <%@companies_list=CompanyRole.all.order({:name=>:asc})%>
@@ -31,10 +34,10 @@ Congratulations! We hope your interview went well. Please fill out this form to 
   <hr>
 
   <div class="mb-1">
-    <label for="role">Role</label>
+    <label for="role">Role:</label>
     <select class="form-select mb-3 w-50" id="role" name="role">
       <option selected value="0"></option>
-      <%@roles_list=Role.all.order({:name=>:asc})%>
+      <%@roles_list=Role.all.order({:role=>:asc})%>
       <%@role_names=@roles_list.uniq{|role| [role.role]}%>
       <%@role_names.each do |a_role|%>
       <option value="<%=a_role.role%>"><%=a_role.role%></option>
@@ -44,16 +47,18 @@ Congratulations! We hope your interview went well. Please fill out this form to 
 
   <div class="mb-1">
     <label for="role_other">Other:</label> 
-    <input id="role_other" name="role_other">
+    <input id="role_other" name="role_other" >
   </div>
   <hr>
 
 
   <div class="mb-1"> 
-    <label for="round">Interview Round</label>
+    <label for="round">Interview Round:</label>
     <input id="round" name="round">
   </div>
 
   <button class="btn btn-primary">Next</button>
   
 </form>
+  </div>
+</div>

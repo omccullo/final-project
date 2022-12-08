@@ -1,15 +1,78 @@
 <h1>Booth Tech Group Interview Question Bank</h1>
 Welcome to the BTG Interview Question Bank. You can either submit information about an interview you've had or view data on previously submitted interview information. 
 <hr>
-<dl>
-<dd>
-<a class="btn btn-outline-primary" href="/new_interview_entry" role="button">Submit New Interview</a>
-</dd>
-<dd>
-<hr>
-<h5>Interview Data Filters</h5>
 
-<form action="/interview_data">
+
+<p>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Interview Data Search
+  </button>
+  
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">Submit New Interview</button>
+</p>
+
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <h6>Filters</h6>
+    <form action="/interview_data">
+      <div class="mb-1">
+        <label for="company">Company:</label>
+        <select class="form-select mb-3 w-50" id="company" name="company">
+          <option selected value="0"></option>
+          <%@companies_list=CompanyRole.all.order({:name=>:asc})%>
+          <%@company_names=@companies_list.uniq{|company| [company.name]}%>
+          <%@company_names.each do |a_company|%>
+          <option value="<%=a_company.name%>"><%=a_company.name%></option>
+          <%end%>
+        </select>
+      </div>
+
+      <div class="mb-1"> 
+        <label for="position_type">Internship or Full-time</label>
+        <select class="form-select mb-3 w-50" id="position_type" name="position_type">
+          <option selected value="0"></option>
+          <option value="Full-time">Full-time</option>
+          <option value="Internship">Internship</option>
+        </select>
+      </div>
+
+      <div class="mb-1">
+        <label for="role">Role:</label>
+        <select class="form-select mb-3 w-50" id="role" name="role">
+          <option selected value="0"></option>
+          <%@roles_list=Role.all.order({:name=>:asc})%>
+          <%@role_names=@roles_list.uniq{|role| [role.role]}%>
+          <%@role_names.each do |a_role|%>
+          <option value="<%=a_role.role%>"><%=a_role.role%></option>
+          <%end%>
+        </select>
+      </div>
+
+      <div class="mb-1">
+        <label for="round">Interview Round:</label>
+        <select class="form-select mb-3 w-50" id="round" name="round">
+          <option selected value="0"></option>
+          <%@rounds_list=InterviewFormatsEntry.all.order({:round=>:asc})%>
+          <%@rounds=@rounds_list.uniq{|round| [round.round]}%>
+          <%@rounds.each do |a_round|%>
+            <option value="<%=a_round.round%>"><%=a_round.round%></option>
+          <%end%>
+        </select>
+      </div>
+
+    <button class="btn btn-primary">Next</button>
+  </form>
+  </div>
+</div>
+
+
+
+<div class="collapse" id="collapseExample2">
+  <div class="card card-body">
+  Congratulations! We hope your interview went well. Please fill out this form to let us know the questions you were asked during your interview!
+  <hr>
+  <strong>General Information:</strong>
+<form action="/interview_format">
   <div class="mb-1">
     <label for="company">Company:</label>
     <select class="form-select mb-3 w-50" id="company" name="company">
@@ -21,21 +84,28 @@ Welcome to the BTG Interview Question Bank. You can either submit information ab
       <%end%>
     </select>
   </div>
+  <div class="mb-1">
+    <label for="company_other">Other:</label> 
+    <input id="company_other" name="company_other">
+  </div>
 
+<hr>
   <div class="mb-1"> 
-    <label for="position_type">Internship or Full-time</label>
+    <label for="position_type">Was this interview for an internship or full-time position?</label>
     <select class="form-select mb-3 w-50" id="position_type" name="position_type">
-      <option selected value="0"></option>
+      <option selected></option>
       <option value="Full-time">Full-time</option>
       <option value="Internship">Internship</option>
     </select>
   </div>
 
+  <hr>
+
   <div class="mb-1">
     <label for="role">Role:</label>
     <select class="form-select mb-3 w-50" id="role" name="role">
       <option selected value="0"></option>
-      <%@roles_list=Role.all.order({:name=>:asc})%>
+      <%@roles_list=Role.all.order({:role=>:asc})%>
       <%@role_names=@roles_list.uniq{|role| [role.role]}%>
       <%@role_names.each do |a_role|%>
       <option value="<%=a_role.role%>"><%=a_role.role%></option>
@@ -44,17 +114,19 @@ Welcome to the BTG Interview Question Bank. You can either submit information ab
   </div>
 
   <div class="mb-1">
+    <label for="role_other">Other:</label> 
+    <input id="role_other" name="role_other" >
+  </div>
+  <hr>
+
+
+  <div class="mb-1"> 
     <label for="round">Interview Round:</label>
-    <select class="form-select mb-3 w-50" id="round" name="round">
-      <option selected value="0"></option>
-      <%@rounds_list=InterviewFormatsEntry.all.order({:round=>:asc})%>
-      <%@rounds=@rounds_list.uniq{|round| [round.round]}%>
-      <%@rounds.each do |a_round|%>
-        <option value="<%=a_round.round%>"><%=a_round.round%></option>
-      <%end%>
-    </select>
+    <input id="round" name="round">
   </div>
 
   <button class="btn btn-primary">Next</button>
   
 </form>
+  </div>
+</div>

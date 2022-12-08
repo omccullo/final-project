@@ -19,7 +19,7 @@ These are the most common interview formats for this company. Please select the 
 <%@company_id=@company.id.to_i%>
 <%@role_name=params.fetch("role")%>
   <%if @role_name=="0"%>
-    <%@new_role_name=params.fetch("role_other")%>
+    <%@new_role_name=params.fetch("role_other")%> 
     <%r=Role.new%>
     <%r.role=@new_role_name%>
     <%r.save%>
@@ -30,9 +30,9 @@ These are the most common interview formats for this company. Please select the 
 <%@interview_round=params.fetch("round")%>
 <%@interview_format_entries=InterviewFormatsEntry.where({:company_id=>@company_id}).order({:frequency=>:desc})%>
 
-<hr>
-
 <div>
+<div class="collapse.show" id="collapseExample">
+  <div class="card card-body">
   <form action="/insert_interview_formats_entry" method="post"> 
     <%@format_number=1%>
     <%@interview_format_entries.each do |a_format|%>
@@ -52,6 +52,7 @@ These are the most common interview formats for this company. Please select the 
 
 If your interview format was NOT listed above, please fill out the form below.
 <label>How many interviews did you do?</label>
+
 <select class="form-select mb-3 w-50" id="interviews_number" name="interviews_number">
   <option selected></option>
   <option value="1">1</option>
@@ -112,4 +113,6 @@ What type of questions were you asked?
 <button class="btn btn-primary">Next</button>
   
 </form>
+</div>
+</div>
 </div>
