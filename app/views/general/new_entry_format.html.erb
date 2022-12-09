@@ -31,11 +31,7 @@
 <div>
 <div class="collapse.show" id="collapseExample">
   <div class="card card-body">
-  <%if params.fetch("company")=="0"%>
-    No interview formats have been submitted for this company yet. Please fill out the form below to submit a new interview format.
-  <%else%>
-    These are the most common interview formats for this company. Please select the format for your interview. 
-  <%end%>
+Please select an already submitted interview format for this company or fill out the form if the format is not listed below. 
   <form action="/insert_interview_formats_entry" method="post"> 
     <%@format_number=1%>
     <%@interview_format_entries.each do |a_format|%>

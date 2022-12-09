@@ -6,11 +6,8 @@
 
 <div class="collapse.show" id="collapseExample">
   <div class="card card-body">
-  <%if @newest_company.name==@this_company.name%>
-    No quesitons have been submitted for this company yet. Please fill out the form below to submit new questions on the next page.
-  <%else%>
-    These are the most frequently asked questions for this company. Please check the ones you were asked. Questions may not be the exact wording you were asked (e.g., "Walk me through your resume" vs "Tell me about yourself"), so please use your best judgment. If it seems close enough to the question you were asked, please select yes. You will have the option to submit additional questions not listed here on the next page. 
-  <%end%>
+  Please check the questions you were asked. If none are listed or the question you were asked is not listed, please enter how many quesitons you'd like to add in the form below. Questions may not be the exact wording you were asked (e.g., "Walk me through your resume" vs "Tell me about yourself"), so please use your best judgment. If it seems close enough to the question you were asked, please select yes. 
+
 
 <div>
   <form action="/new_questions"> 

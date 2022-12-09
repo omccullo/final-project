@@ -92,17 +92,12 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        <strong>Interview Questions</strong>
+        <strong>Interview Questions (in order of frequency)</strong>
       </button>
     </h2>
     
     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body">
-        <%if @question_list==nil%>
-          No questions have been submitted. Please try different search filters. For example, if you searched both Company and Position, try filtering only the Company. 
-        <%else%>
-          <p class="mb-3"><strong>Frequently asked questions in order of frequency</strong><p>
-        <%end%>
           <dl>
           <%@questions_list.each do |a_question|%>
             <%question_to_display=Question.where({:id=>a_question.question_id})%>
@@ -117,16 +112,11 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        <strong>Interview Formats</strong>
+        <strong>Interview Formats (in order of frequency)</strong>
       </button>
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body">
-        <%if @format_list==nil%>
-          No formats have been submitted. Please try different search filters. For example, if you searched both Company and Position, try filtering only the Company. 
-        <%else%>
-          <p class="mb-3"><strong>Most frequent interview formats in order of frequency</strong><p>
-        <%end%>
       
         <dl>
         <%@formats_list.each do |a_format|%>
